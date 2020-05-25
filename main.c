@@ -46,14 +46,14 @@ int main(){
     int skip = 0;
 
     //Get player name
-   	sceUtilityGetSystemParamString(PSP_SYSTEMPARAM_ID_STRING_NICKNAME, playerName, 127);
+    sceUtilityGetSystemParamString(PSP_SYSTEMPARAM_ID_STRING_NICKNAME, playerName, 127);
 
 
     initOSLib();
-	pspAudioInit();
-	initMusic();
+    pspAudioInit();
+    initMusic();
  
-	oslIntraFontInit(INTRAFONT_CACHE_ALL | INTRAFONT_STRING_UTF8); // All fonts loaded with oslLoadIntraFontFile will have UTF8 support
+    oslIntraFontInit(INTRAFONT_CACHE_ALL | INTRAFONT_STRING_UTF8); // All fonts loaded with oslLoadIntraFontFile will have UTF8 support
 
     //Loads image:
     OSL_IMAGE *bkg = oslLoadImageFilePNG("bsg_title.png", OSL_IN_RAM | OSL_SWIZZLED, OSL_PF_8888);
@@ -67,8 +67,8 @@ int main(){
     oslIntraFontSetStyle(pgfFont, 1.0, RGBA(255,255,255,255), RGBA(0,0,0,0), INTRAFONT_ALIGN_LEFT);
     oslSetFont(pgfFont);
 
-	//Starts to play MP3    
-	MP3_Play();
+    //Starts to play MP3    
+    MP3_Play();
 
 /////////////////////////////////
 // Splash Screen
@@ -80,8 +80,8 @@ int main(){
 
             oslDrawImageXY(bkg, 0, 0);
 
-			//Draw Fonts:
-			float t = ((float)(clock() % CLOCKS_PER_SEC)) / ((float)CLOCKS_PER_SEC);
+	    //Draw Fonts:
+	    float t = ((float)(clock() % CLOCKS_PER_SEC)) / ((float)CLOCKS_PER_SEC);
             int val = (t < 0.5f) ? t*511 : (1.0f-t)*511;
             oslIntraFontSetStyle(pgfFont, 1.0f,LITEGRAY,(0xFF<<24)+(val<<16)+(val<<8)+(val),0);
             oslDrawString(180, 200, "BattleStar Galactica");
@@ -121,7 +121,7 @@ int main(){
             control();
 
             if(MP3_EndOfStream() == 1)
-			    MP3_Stop();
+		MP3_Stop();
 
 
             blitObj(player);
@@ -138,8 +138,8 @@ int main(){
         oslEndFrame();
         skip = oslSyncFrame();
 
-		if(MP3_EndOfStream() == 1)
-			MP3_Stop();
+	if(MP3_EndOfStream() == 1)
+		MP3_Stop();
 
        
     }
@@ -153,9 +153,9 @@ int main(){
 
    	
     quitMikMod();
-  	Player_Stop();
-	Player_Free(mf);
-	MikMod_Exit();
+    Player_Stop();
+    Player_Free(mf);
+    MikMod_Exit();
 
     // Kernel Exit
     sceKernelExitGame();
